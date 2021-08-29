@@ -16,7 +16,7 @@ use ReflectionClass;
 final class PhpDocumentorClassReflector implements ClassReflector
 {
     /**
-     * @var array<int, string>
+     * @var string[]
      */
     private array $files = [];
 
