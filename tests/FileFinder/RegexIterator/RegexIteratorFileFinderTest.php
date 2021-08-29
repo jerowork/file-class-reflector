@@ -17,12 +17,12 @@ final class RegexIteratorFileFinderTest extends TestCase
 
         $this->assertSame(
             [
-                __DIR__ . '/../../resources/directory/sub/StubClass4.php',
-                __DIR__ . '/../../resources/directory/StubClass3.php',
                 __DIR__ . '/../../resources/StubClass.php',
                 __DIR__ . '/../../resources/StubClass2.php',
+                __DIR__ . '/../../resources/directory/StubClass3.php',
+                __DIR__ . '/../../resources/directory/sub/StubClass4.php',
             ],
-            iterator_to_array($files)
+            $files
         );
     }
 }

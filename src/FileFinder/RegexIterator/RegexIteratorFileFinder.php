@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Jerowork\FileClassReflector\FileFinder\RegexIterator;
 
-use Generator;
 use Jerowork\FileClassReflector\FileFinder\FileFinder;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
@@ -14,8 +13,10 @@ final class RegexIteratorFileFinder implements FileFinder
 {
     private const REGEX_PHP_FILE = '/^.+\.php$/i';
 
-    public function getFiles(string ...$directories) : Generator
+    public function getFiles(string ...$directories) : array
     {
+        $files = [];
+
         foreach ($directories as $directory) {
             $filesIterator = new RegexIterator(
                 new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory)),
@@ -28,8 +29,12 @@ final class RegexIteratorFileFinder implements FileFinder
                     continue;
                 }
 
-                yield $filePath[0];
+                $files[] = $filePath[0];
             }
         }
+
+        sort($files);
+
+        return $files;
     }
 }

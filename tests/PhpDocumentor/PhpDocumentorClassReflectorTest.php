@@ -50,10 +50,10 @@ final class PhpDocumentorClassReflectorTest extends TestCase
         $this->reflector->addDirectory(__DIR__.'/../resources');
 
         $this->assertSame([
-            __DIR__ . '/../resources/directory/sub/StubClass4.php',
-            __DIR__ . '/../resources/directory/StubClass3.php',
             __DIR__ . '/../resources/StubClass.php',
             __DIR__ . '/../resources/StubClass2.php',
+            __DIR__ . '/../resources/directory/StubClass3.php',
+            __DIR__ . '/../resources/directory/sub/StubClass4.php',
         ], $this->reflector->getFiles());
     }
 
@@ -65,10 +65,10 @@ final class PhpDocumentorClassReflectorTest extends TestCase
         $this->reflector->reflect();
 
         $this->assertEquals([
-            new ReflectionClass(StubClass4::class),
-            new ReflectionClass(StubClass3::class),
             new ReflectionClass(StubClass::class),
             new ReflectionClass(StubClass2::class),
+            new ReflectionClass(StubClass3::class),
+            new ReflectionClass(StubClass4::class),
         ], $this->reflector->getClasses());
     }
 }

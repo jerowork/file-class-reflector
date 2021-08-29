@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace Jerowork\FileClassReflector\FileFinder;
 
-use Generator;
-
 interface FileFinder
 {
     /**
-     * @return Generator<string>
+     * @return string[]
      */
-    public function getFiles(string ...$directories) : Generator;
+    public function getFiles(string ...$directories) : array;
 }
