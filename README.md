@@ -53,30 +53,3 @@ $reflector = $factory->create();
 
 // ...
 ```
-
-## Cache
-By default, caching of found classes disabled. This is fine for a development environment.
-
-However, for a production environment you do not want to walk through directories on each request
-and reflect classes on it. Therefore you can use any PSR-16 cache implementation.
-
-```php
-use Jerowork\FileClassReflector\Cache\Psr16\Psr16CachedClassReflectorDecorator;
-use Symfony\Component\Cache\Adapter\ApcuAdapter;
-use Symfony\Component\Cache\Psr16Cache;
-
-// ...
-
-// Create a new ClassReflector instance directly via a static factory method
-$reflector = PhpDocumentorClassReflectorFactory::createInstance();
-
-// Enable caching with any PSR-16 implementation (e.g. symfony/cache)
-$reflector = new Psr16CachedClassReflectorDecorator(
-    $reflector,
-    new Psr16Cache(new ApcuAdapter())
-);
-
-// ...
-```
-
-Note: Any PSR-6 cache implementation can be used too, by using Symfony's PSR-6 to PSR-16 adapter.
