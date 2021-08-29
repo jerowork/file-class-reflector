@@ -19,14 +19,18 @@ final class Psr16CachedClassReflectorDecorator implements ClassReflector
     {
     }
 
-    public function addFile(string ...$files) : ClassReflector
+    public function addFile(string ...$files) : self
     {
-        return $this->classReflector->addFile(...$files);
+        $this->classReflector->addFile(...$files);
+
+        return $this;
     }
 
-    public function addDirectory(string ...$directories) : ClassReflector
+    public function addDirectory(string ...$directories) : self
     {
-        return $this->classReflector->addDirectory(...$directories);
+        $this->classReflector->addDirectory(...$directories);
+
+        return $this;
     }
 
     public function reflect() : ClassReflector
