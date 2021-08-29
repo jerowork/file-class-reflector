@@ -43,12 +43,12 @@ final class Psr16CachedClassReflectorDecoratorTest extends MockeryTestCase
         $this->decorator->addDirectory('/directory/a', '/directory/b');
 
         $this->classReflector->allows('getFiles')->andReturn([
-            __DIR__ . '/../../resources/directory/StubClass3.php',
-            __DIR__ . '/../../resources/StubClass2.php',
+            '/resources/directory/StubClass3.php',
+            '/resources/StubClass2.php',
         ]);
 
         // Get from directories for first time
-        $this->cache->expects('get')->with('15219da6d0b9436989d2f14473289556fa4c2e31')->andReturnNull();
+        $this->cache->expects('get')->with('f3886a843d782b2566a800da7856412214c35011')->andReturnNull();
 
         $this->classReflector->expects('reflect')->andReturn($this->classReflector);
         $this->classReflector->expects('getClasses')->andReturn([
@@ -58,7 +58,7 @@ final class Psr16CachedClassReflectorDecoratorTest extends MockeryTestCase
 
         // Save to cache for first time
         $this->cache->expects('set')->with(
-            '15219da6d0b9436989d2f14473289556fa4c2e31',
+            'f3886a843d782b2566a800da7856412214c35011',
             json_encode([StubClass2::class,  StubClass3::class])
         );
 
@@ -72,7 +72,7 @@ final class Psr16CachedClassReflectorDecoratorTest extends MockeryTestCase
         ], $classes);
 
         // Get from cache for second time
-        $this->cache->expects('get')->with('15219da6d0b9436989d2f14473289556fa4c2e31')->andReturn(
+        $this->cache->expects('get')->with('f3886a843d782b2566a800da7856412214c35011')->andReturn(
             json_encode([StubClass2::class,  StubClass3::class])
         );
 
