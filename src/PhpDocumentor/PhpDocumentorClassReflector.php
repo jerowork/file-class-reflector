@@ -39,6 +39,7 @@ final class PhpDocumentorClassReflector implements ClassReflector
 
     public function addDirectory(string ...$directories) : self
     {
+        /** @psalm-suppress DuplicateArrayKey */
         $this->files = [...$this->files, ...$this->fileFinder->getFiles(...$directories)];
 
         return $this;
