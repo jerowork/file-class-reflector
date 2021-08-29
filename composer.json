@@ -1,0 +1,53 @@
+{
+    "name": "jerowork/file-class-reflector",
+    "type": "library",
+    "description": "Get fully-qualified class names based on directory and file paths.",
+    "keywords": [
+        "php8",
+        "reflection",
+        "class-name",
+        "fqcn"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jeroen de Graaf",
+            "email": "hello@jero.work"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "phpdocumentor/reflection": "^5.0",
+        "psr/simple-cache": "^1.0"
+    },
+    "require-dev": {
+        "ergebnis/composer-normalize": "^2.15",
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "mockery/mockery": "^1.4",
+        "phpmd/phpmd": "^2.10",
+        "phpro/grumphp-shim": "^1.4",
+        "phpstan/phpstan": "^0.12.96",
+        "phpunit/phpunit": "^9.5",
+        "squizlabs/php_codesniffer": "^3.6",
+        "vimeo/psalm": "^4.9"
+    },
+    "suggest": {
+        "symfony/cache": "As PSR-16 Cache implementation"
+    },
+    "config": {
+        "platform": {
+            "php": "8.0"
+        },
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Jerowork\\FileClassReflector\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Jerowork\\FileClassReflector\\Test\\": "tests/"
+        }
+    }
+}
