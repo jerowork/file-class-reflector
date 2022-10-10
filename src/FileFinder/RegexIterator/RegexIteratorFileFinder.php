@@ -24,6 +24,7 @@ final class RegexIteratorFileFinder implements FileFinder
                 RegexIterator::GET_MATCH
             );
 
+            /** @var array<int, string> $filePath */
             foreach ($filesIterator as $filePath) {
                 if (isset($filePath[0]) === false) {
                     continue;
