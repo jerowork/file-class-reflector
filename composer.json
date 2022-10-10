@@ -1,14 +1,14 @@
 {
     "name": "jerowork/file-class-reflector",
-    "type": "library",
     "description": "Get fully-qualified class names based on directory and file paths.",
+    "license": "MIT",
+    "type": "library",
     "keywords": [
         "php8",
         "reflection",
         "class-name",
         "fqcn"
     ],
-    "license": "MIT",
     "authors": [
         {
             "name": "Jeroen de Graaf",
@@ -31,12 +31,6 @@
         "squizlabs/php_codesniffer": "^3.6",
         "vimeo/psalm": "^4.9"
     },
-    "config": {
-        "platform": {
-            "php": "8.0"
-        },
-        "sort-packages": true
-    },
     "autoload": {
         "psr-4": {
             "Jerowork\\FileClassReflector\\": "src/"
@@ -46,5 +40,19 @@
         "psr-4": {
             "Jerowork\\FileClassReflector\\Test\\": "tests/"
         }
+    },
+    "config": {
+        "allow-plugins": {
+            "phpro/grumphp-shim": true,
+            "ergebnis/composer-normalize": true
+        },
+        "platform": {
+            "php": "8.0"
+        },
+        "sort-packages": true
+    },
+    "scripts": {
+        "phpcsfixer": "vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.php --allow-risky=yes",
+        "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon"
     }
 }
