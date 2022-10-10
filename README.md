@@ -11,11 +11,11 @@ Get fully-qualified classnames based on directory and file paths.
 ## Installation
 Install via [Composer](https://getcomposer.org):
 ```bash
-$ composer require jerowork/file-class-reflector
+composer require jerowork/file-class-reflector
 ```
 
 ## Usage
-The ClassReflector makes use of the [phpdocumentor/reflection](https://github.com/phpDocumentor/Reflection) 
+The `ClassReflector` makes use of the [phpdocumentor/reflection](https://github.com/phpDocumentor/Reflection) 
 package to retrieve the fully-qualified class name from a file.
 
 Basic usage:
@@ -52,4 +52,46 @@ $factory = new PhpDocumentorClassReflectorFactory(
 $reflector = $factory->create();
 
 // ...
+```
+
+### DI service definition
+As a good practice we should always 'program to interfaces, not implementations', you should add this to your DI container.
+
+PSR-11 Container example:
+
+```php
+use Jerowork\FileClassReflector\ClassReflectorFactory;
+use Jerowork\FileClassReflector\FileFinder\FileFinder;
+use Jerowork\FileClassReflector\FileFinder\RegexIterator\RegexIteratorFileFinder;
+use Jerowork\FileClassReflector\PhpDocumentor\PhpDocumentorClassReflectorFactory;
+use phpDocumentor\Reflection\Php\ProjectFactory;
+use Psr\Container\ContainerInterface;
+
+return [
+    ClassReflectorFactory::class => static fn (ContainerInterface $container) : ClassReflectorFactory {
+        return new PhpDocumentorClassReflectorFactory(
+            ProjectFactory::createInstance(),
+            $container->get(FileFinder::class)
+        );
+    },
+    
+    FileFinder::class => static fn (): FileFinder => new RegexIteratorFileFinder(),
+];
+```
+
+Symfony YAML-file example:
+```yaml
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  Jerowork\FileClassReflector\ClassReflectorFactory:
+    class: Jerowork\FileClassReflector\PhpDocumentor\PhpDocumentorClassReflectorFactory
+
+  Jerowork\FileClassReflector\FileFinder\FileFinder:
+    class: Jerowork\FileClassReflector\FileFinder\RegexIterator\RegexIteratorFileFinder
+
+  phpDocumentor\Reflection\ProjectFactory:
+    factory: [phpDocumentor\Reflection\Php\ProjectFactory, 'createInstance']
 ```
