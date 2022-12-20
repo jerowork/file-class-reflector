@@ -68,7 +68,7 @@ use phpDocumentor\Reflection\Php\ProjectFactory;
 use Psr\Container\ContainerInterface;
 
 return [
-    ClassReflectorFactory::class => static function (ContainerInterface $container) : ClassReflectorFactory {
+    ClassReflectorFactory::class => static function (ContainerInterface $container): ClassReflectorFactory {
         return new PhpDocumentorClassReflectorFactory(
             ProjectFactory::createInstance(),
             $container->get(FileFinder::class)
