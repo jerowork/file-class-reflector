@@ -2764,22 +2764,22 @@
         },
         {
             "name": "phpro/grumphp-shim",
-            "version": "v1.13.0",
+            "version": "v1.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpro/grumphp-shim.git",
-                "reference": "973a933d176be41f1196d8db7851e32f985dd798"
+                "reference": "2e79a1c2ad838f02a7b210eb24e1e1d9e7a34e21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpro/grumphp-shim/zipball/973a933d176be41f1196d8db7851e32f985dd798",
-                "reference": "973a933d176be41f1196d8db7851e32f985dd798",
+                "url": "https://api.github.com/repos/phpro/grumphp-shim/zipball/2e79a1c2ad838f02a7b210eb24e1e1d9e7a34e21",
+                "reference": "2e79a1c2ad838f02a7b210eb24e1e1d9e7a34e21",
                 "shasum": ""
             },
             "require": {
                 "composer-plugin-api": "~2.0",
                 "ext-json": "*",
-                "php": "^7.4 || ^8.0"
+                "php": "^8.0"
             },
             "replace": {
                 "phpro/grumphp": "self.version"
@@ -2817,9 +2817,9 @@
             "description": "GrumPHP Phar distribution",
             "support": {
                 "issues": "https://github.com/phpro/grumphp-shim/issues",
-                "source": "https://github.com/phpro/grumphp-shim/tree/v1.13.0"
+                "source": "https://github.com/phpro/grumphp-shim/tree/v1.14.0"
             },
-            "time": "2022-06-24T08:34:50+00:00"
+            "time": "2022-11-25T08:55:08+00:00"
         },
         {
             "name": "phpstan/phpdoc-parser",
