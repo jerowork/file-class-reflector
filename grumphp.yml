@@ -5,3 +5,5 @@ grumphp:
             config: .php-cs-fixer.php
         phpstan:
             configuration: phpstan.neon
+        phpunit:
+            config_file: phpunit.xml
