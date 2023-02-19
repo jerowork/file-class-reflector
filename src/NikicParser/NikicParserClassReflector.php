@@ -23,9 +23,9 @@ final class NikicParserClassReflector implements ClassReflector
     private array $classes = [];
 
     public function __construct(
-        private FileFinder $fileFinder,
-        private Parser $parser,
-        private NodeTraverser $nodeTraverser,
+        private readonly FileFinder $fileFinder,
+        private readonly Parser $parser,
+        private readonly NodeTraverser $nodeTraverser,
     ) {
     }
 

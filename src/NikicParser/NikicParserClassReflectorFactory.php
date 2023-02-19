@@ -15,9 +15,9 @@ use PhpParser\ParserFactory;
 final class NikicParserClassReflectorFactory implements ClassReflectorFactory
 {
     public function __construct(
-        private FileFinder $fileFinder,
-        private Parser $parser,
-        private NodeTraverser $nodeTraverser,
+        private readonly FileFinder $fileFinder,
+        private readonly Parser $parser,
+        private readonly NodeTraverser $nodeTraverser,
     ) {
     }
 
