@@ -21,7 +21,7 @@ final class RegexIteratorFileFinder implements FileFinder
             $filesIterator = new RegexIterator(
                 new RecursiveIteratorIterator(new RecursiveDirectoryIterator($directory)),
                 self::REGEX_PHP_FILE,
-                RegexIterator::GET_MATCH
+                RegexIterator::GET_MATCH,
             );
 
             /** @var array<int, string> $filePath */

@@ -50,7 +50,7 @@ final class PhpDocumentorClassReflector implements ClassReflector
         /** @var Project $project */
         $project = $this->projectFactory->create(self::class, array_map(
             static fn (string $file) : File => new LocalFile($file),
-            $this->files
+            $this->files,
         ));
 
         $classes = [];
@@ -59,7 +59,7 @@ final class PhpDocumentorClassReflector implements ClassReflector
                 ...$classes,
                 ...array_values(array_map(
                     static fn (Class_ $class) : string => (string) $class->getFqsen(),
-                    $file->getClasses()
+                    $file->getClasses(),
                 )),
             ];
         }
@@ -67,7 +67,7 @@ final class PhpDocumentorClassReflector implements ClassReflector
         /** @psalm-suppress ArgumentTypeCoercion */
         $this->classes = array_map(
             static fn (string $class) : ReflectionClass => new ReflectionClass($class), // @phpstan-ignore-line
-            array_unique($classes)
+            array_unique($classes),
         );
 
         return $this;
