@@ -31,7 +31,6 @@ final class PhpDocumentorClassReflector implements ClassReflector
 
     public function addFile(string ...$files) : self
     {
-        /** @psalm-suppress DuplicateArrayKey */
         $this->files = [...$this->files, ...$files];
 
         return $this;
@@ -39,7 +38,6 @@ final class PhpDocumentorClassReflector implements ClassReflector
 
     public function addDirectory(string ...$directories) : self
     {
-        /** @psalm-suppress DuplicateArrayKey */
         $this->files = [...$this->files, ...$this->fileFinder->getFiles(...$directories)];
 
         return $this;
@@ -64,7 +62,6 @@ final class PhpDocumentorClassReflector implements ClassReflector
             ];
         }
 
-        /** @psalm-suppress ArgumentTypeCoercion */
         $this->classes = array_map(
             static fn (string $class) : ReflectionClass => new ReflectionClass($class), // @phpstan-ignore-line
             array_unique($classes),
