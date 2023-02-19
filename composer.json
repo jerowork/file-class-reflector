@@ -17,7 +17,7 @@
     ],
     "require": {
         "php": "^8.0",
-        "phpdocumentor/reflection": "^5.0"
+        "nikic/php-parser": "^4.15"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.15",

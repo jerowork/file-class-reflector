@@ -2,27 +2,33 @@
 
 declare(strict_types=1);
 
-namespace Jerowork\FileClassReflector\Test\PhpDocumentor;
+namespace Jerowork\FileClassReflector\Test\NikicParser;
 
 use Jerowork\FileClassReflector\FileFinder\RegexIterator\RegexIteratorFileFinder;
-use Jerowork\FileClassReflector\PhpDocumentor\PhpDocumentorClassReflector;
+use Jerowork\FileClassReflector\NikicParser\NikicParserClassReflector;
 use Jerowork\FileClassReflector\Test\resources\directory\StubClass3;
 use Jerowork\FileClassReflector\Test\resources\directory\sub\StubClass4;
 use Jerowork\FileClassReflector\Test\resources\StubClass;
 use Jerowork\FileClassReflector\Test\resources\StubClass2;
-use phpDocumentor\Reflection\Php\ProjectFactory;
+use Jerowork\FileClassReflector\Test\resources\StubInterface;
+use Jerowork\FileClassReflector\Test\resources\StubTrait;
+use PhpParser\NodeTraverser;
+use PhpParser\ParserFactory;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
-final class PhpDocumentorClassReflectorTest extends TestCase
+final class NikicParserClassReflectorTest extends TestCase
 {
-    private PhpDocumentorClassReflector $reflector;
+    private NikicParserClassReflector $reflector;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
-        $this->reflector = new PhpDocumentorClassReflector(
-            ProjectFactory::createInstance(),
-            new RegexIteratorFileFinder()
+        parent::setUp();
+
+        $this->reflector = new NikicParserClassReflector(
+            new RegexIteratorFileFinder(),
+            (new ParserFactory())->create(ParserFactory::PREFER_PHP7),
+            new NodeTraverser(),
         );
     }
 
@@ -52,6 +58,8 @@ final class PhpDocumentorClassReflectorTest extends TestCase
         $this->assertSame([
             __DIR__ . '/../resources/StubClass.php',
             __DIR__ . '/../resources/StubClass2.php',
+            __DIR__ . '/../resources/StubInterface.php',
+            __DIR__ . '/../resources/StubTrait.php',
             __DIR__ . '/../resources/directory/StubClass3.php',
             __DIR__ . '/../resources/directory/sub/StubClass4.php',
         ], $this->reflector->getFiles());
@@ -67,6 +75,8 @@ final class PhpDocumentorClassReflectorTest extends TestCase
         $this->assertEquals([
             new ReflectionClass(StubClass::class),
             new ReflectionClass(StubClass2::class),
+            new ReflectionClass(StubInterface::class),
+            new ReflectionClass(StubTrait::class),
             new ReflectionClass(StubClass3::class),
             new ReflectionClass(StubClass4::class),
         ], $this->reflector->getClasses());

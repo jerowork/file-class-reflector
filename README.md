@@ -15,16 +15,16 @@ composer require jerowork/file-class-reflector
 ```
 
 ## Usage
-The `ClassReflector` makes use of the [phpdocumentor/reflection](https://github.com/phpDocumentor/Reflection) 
+The `ClassReflector` makes use of the [nikic/php-parser](https://github.com/nikic/php-parser) 
 package to retrieve the fully-qualified class name from a file.
 
 Basic usage:
 
 ```php
-use Jerowork\FileClassReflector\PhpDocumentor\PhpDocumentorClassReflectorFactory;
+use Jerowork\FileClassReflector\NikicParser\NikicParserClassReflectorFactory;
 
 // Create a new ClassReflector instance directly via a static factory method
-$reflector = PhpDocumentorClassReflectorFactory::createInstance();
+$reflector = NikicParserClassReflectorFactory::createInstance();
 
 // Add necessary directories and/or files and reflect
 $reflector
@@ -38,14 +38,16 @@ $classes = $reflector->getClasses();
 The `ClassReflectorFactory` can also be instantiated via the constructor.
 In this way the factory can be added to a DI container. 
 ```php
-use Jerowork\FileClassReflector\PhpDocumentor\PhpDocumentorClassReflectorFactory;
 use Jerowork\FileClassReflector\FileFinder\RegexIterator\RegexIteratorFileFinder;
-use phpDocumentor\Reflection\Php\ProjectFactory;
+use Jerowork\FileClassReflector\NikicParser\NikicParserClassReflectorFactory;
+use PhpParser\NodeTraverser;
+use PhpParser\ParserFactory;
 
 // Create the factory
-$factory = new PhpDocumentorClassReflectorFactory(
-    ProjectFactory::createInstance(),
-    new RegexIteratorFileFinder()
+$factory = new NikicParserClassReflectorFactory(
+    new RegexIteratorFileFinder(),
+    (new ParserFactory())->create(ParserFactory::PREFER_PHP7),
+    new NodeTraverser(),
 );
 
 // Create a new ClassReflector instance
@@ -63,15 +65,17 @@ PSR-11 Container example:
 use Jerowork\FileClassReflector\ClassReflectorFactory;
 use Jerowork\FileClassReflector\FileFinder\FileFinder;
 use Jerowork\FileClassReflector\FileFinder\RegexIterator\RegexIteratorFileFinder;
-use Jerowork\FileClassReflector\PhpDocumentor\PhpDocumentorClassReflectorFactory;
-use phpDocumentor\Reflection\Php\ProjectFactory;
+use Jerowork\FileClassReflector\NikicParser\NikicParserClassReflectorFactory;
+use PhpParser\NodeTraverser;
+use PhpParser\ParserFactory;
 use Psr\Container\ContainerInterface;
 
 return [
     ClassReflectorFactory::class => static function (ContainerInterface $container): ClassReflectorFactory {
-        return new PhpDocumentorClassReflectorFactory(
-            ProjectFactory::createInstance(),
-            $container->get(FileFinder::class)
+        return new NikicParserClassReflectorFactory(
+            new RegexIteratorFileFinder(),
+            (new ParserFactory())->create(ParserFactory::PREFER_PHP7),
+            new NodeTraverser(),
         );
     },
     
@@ -87,11 +91,16 @@ services:
     autoconfigure: true
 
   Jerowork\FileClassReflector\ClassReflectorFactory:
-    class: Jerowork\FileClassReflector\PhpDocumentor\PhpDocumentorClassReflectorFactory
+    class: Jerowork\FileClassReflector\NikicParser\NikicParserClassReflectorFactory
 
   Jerowork\FileClassReflector\FileFinder\FileFinder:
     class: Jerowork\FileClassReflector\FileFinder\RegexIterator\RegexIteratorFileFinder
 
-  phpDocumentor\Reflection\ProjectFactory:
-    factory: [phpDocumentor\Reflection\Php\ProjectFactory, 'createInstance']
+  PhpParser\ParserFactory: ~
+
+  PhpParser\Parser:
+    factory: ['@PhpParser\ParserFactory', 'create']
+    arguments: [1] # 1 = ParserFactory::PREFER_PHP7
+
+  PhpParser\NodeTraverser: ~
 ```
