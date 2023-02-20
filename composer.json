@@ -25,7 +25,7 @@
         "mockery/mockery": "^1.4",
         "phpro/grumphp-shim": "^1.4",
         "phpstan/phpstan": "^1.8",
-        "phpunit/phpunit": "^9.5",
+        "phpunit/phpunit": "^9.5 || ^10.0",
         "scrutinizer/ocular": "^1.8"
     },
     "autoload": {
