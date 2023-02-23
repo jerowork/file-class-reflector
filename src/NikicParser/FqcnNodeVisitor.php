@@ -14,8 +14,8 @@ use PhpParser\NodeVisitorAbstract;
 
 final class FqcnNodeVisitor extends NodeVisitorAbstract
 {
-    private ?string $namespace  = null;
-    private ?string $objectName = null;
+    private ?string $namespace = null;
+    private ?string $className = null;
 
     /**
      * @var null|class-string
@@ -29,16 +29,16 @@ final class FqcnNodeVisitor extends NodeVisitorAbstract
         }
 
         if ($node instanceof Class_ || $node instanceof Trait_ || $node instanceof Interface_ || $node instanceof Enum_) {
-            $this->objectName = (string) $node->name;
+            $this->className = (string) $node->name;
 
             /** @var class-string $fqcn */
-            $fqcn       = $this->objectName;
+            $fqcn       = $this->className;
             $this->fqcn = $fqcn;
         }
 
-        if ($this->namespace !== null && $this->objectName !== null) {
+        if ($this->namespace !== null && $this->className !== null) {
             /** @var class-string $fqcn */
-            $fqcn = sprintf('%s\%s', $this->namespace, $this->objectName);
+            $fqcn = sprintf('%s\%s', $this->namespace, $this->className);
 
             $this->fqcn = $fqcn;
         }
