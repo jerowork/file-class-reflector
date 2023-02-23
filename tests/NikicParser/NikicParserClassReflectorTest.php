@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Jerowork\FileClassReflector\Test\NikicParser;
 
+use ClassWithoutNamespace;
 use Jerowork\FileClassReflector\FileFinder\RegexIterator\RegexIteratorFileFinder;
 use Jerowork\FileClassReflector\NikicParser\NikicParserClassReflector;
 use Jerowork\FileClassReflector\Test\resources\directory\StubClass3;
@@ -56,6 +57,7 @@ final class NikicParserClassReflectorTest extends TestCase
         $this->reflector->addDirectory(__DIR__.'/../resources');
 
         $this->assertSame([
+            __DIR__ . '/../resources/ClassWithoutNamespace.php',
             __DIR__ . '/../resources/StubClass.php',
             __DIR__ . '/../resources/StubClass2.php',
             __DIR__ . '/../resources/StubInterface.php',
@@ -73,6 +75,7 @@ final class NikicParserClassReflectorTest extends TestCase
         $this->reflector->reflect();
 
         $this->assertEquals([
+            new ReflectionClass(ClassWithoutNamespace::class),
             new ReflectionClass(StubClass::class),
             new ReflectionClass(StubClass2::class),
             new ReflectionClass(StubInterface::class),

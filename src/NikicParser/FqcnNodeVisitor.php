@@ -29,6 +29,10 @@ final class FqcnNodeVisitor extends NodeVisitorAbstract
 
         if ($node instanceof Class_ || $node instanceof Trait_ || $node instanceof Interface_) {
             $this->objectName = (string) $node->name;
+
+            /** @var class-string $fqcn */
+            $fqcn       = $this->objectName;
+            $this->fqcn = $fqcn;
         }
 
         if ($this->namespace !== null && $this->objectName !== null) {

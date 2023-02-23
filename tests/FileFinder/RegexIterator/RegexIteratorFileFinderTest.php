@@ -17,6 +17,7 @@ final class RegexIteratorFileFinderTest extends TestCase
 
         $this->assertSame(
             [
+                __DIR__ . '/../../resources/ClassWithoutNamespace.php',
                 __DIR__ . '/../../resources/StubClass.php',
                 __DIR__ . '/../../resources/StubClass2.php',
                 __DIR__ . '/../../resources/StubInterface.php',

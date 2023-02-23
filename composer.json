@@ -36,7 +36,10 @@
     "autoload-dev": {
         "psr-4": {
             "Jerowork\\FileClassReflector\\Test\\": "tests/"
-        }
+        },
+        "classmap": [
+            "tests/resources/ClassWithoutNamespace.php"
+        ]
     },
     "config": {
         "allow-plugins": {
