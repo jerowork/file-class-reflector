@@ -20,6 +20,7 @@ final class RegexIteratorFileFinderTest extends TestCase
                 __DIR__ . '/../../resources/ClassWithoutNamespace.php',
                 __DIR__ . '/../../resources/StubClass.php',
                 __DIR__ . '/../../resources/StubClass2.php',
+                __DIR__ . '/../../resources/StubEnum.php',
                 __DIR__ . '/../../resources/StubInterface.php',
                 __DIR__ . '/../../resources/StubTrait.php',
                 __DIR__ . '/../../resources/directory/StubClass3.php',

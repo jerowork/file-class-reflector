@@ -11,6 +11,7 @@ use Jerowork\FileClassReflector\Test\resources\directory\StubClass3;
 use Jerowork\FileClassReflector\Test\resources\directory\sub\StubClass4;
 use Jerowork\FileClassReflector\Test\resources\StubClass;
 use Jerowork\FileClassReflector\Test\resources\StubClass2;
+use Jerowork\FileClassReflector\Test\resources\StubEnum;
 use Jerowork\FileClassReflector\Test\resources\StubInterface;
 use Jerowork\FileClassReflector\Test\resources\StubTrait;
 use PhpParser\NodeTraverser;
@@ -60,6 +61,7 @@ final class NikicParserClassReflectorTest extends TestCase
             __DIR__ . '/../resources/ClassWithoutNamespace.php',
             __DIR__ . '/../resources/StubClass.php',
             __DIR__ . '/../resources/StubClass2.php',
+            __DIR__ . '/../resources/StubEnum.php',
             __DIR__ . '/../resources/StubInterface.php',
             __DIR__ . '/../resources/StubTrait.php',
             __DIR__ . '/../resources/directory/StubClass3.php',
@@ -78,6 +80,7 @@ final class NikicParserClassReflectorTest extends TestCase
             new ReflectionClass(ClassWithoutNamespace::class),
             new ReflectionClass(StubClass::class),
             new ReflectionClass(StubClass2::class),
+            new ReflectionClass(StubEnum::class),
             new ReflectionClass(StubInterface::class),
             new ReflectionClass(StubTrait::class),
             new ReflectionClass(StubClass3::class),

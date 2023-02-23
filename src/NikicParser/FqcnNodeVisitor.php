@@ -6,6 +6,7 @@ namespace Jerowork\FileClassReflector\NikicParser;
 
 use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
+use PhpParser\Node\Stmt\Enum_;
 use PhpParser\Node\Stmt\Interface_;
 use PhpParser\Node\Stmt\Namespace_;
 use PhpParser\Node\Stmt\Trait_;
@@ -27,7 +28,7 @@ final class FqcnNodeVisitor extends NodeVisitorAbstract
             $this->namespace = (string) $node->name;
         }
 
-        if ($node instanceof Class_ || $node instanceof Trait_ || $node instanceof Interface_) {
+        if ($node instanceof Class_ || $node instanceof Trait_ || $node instanceof Interface_ || $node instanceof Enum_) {
             $this->objectName = (string) $node->name;
 
             /** @var class-string $fqcn */
