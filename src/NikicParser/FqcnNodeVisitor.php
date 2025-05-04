@@ -22,7 +22,7 @@ final class FqcnNodeVisitor extends NodeVisitorAbstract
      */
     private ?string $fqcn = null;
 
-    public function enterNode(Node $node) : int|Node|null
+    public function enterNode(Node $node) : array|int|Node|null
     {
         if ($node instanceof Namespace_) {
             $this->namespace = (string) $node->name;
