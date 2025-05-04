@@ -23,7 +23,6 @@
         "ergebnis/composer-normalize": "^2.47",
         "friendsofphp/php-cs-fixer": "^3.0",
         "mockery/mockery": "^1.4",
-        "phpro/grumphp-shim": "^1.4",
         "phpstan/phpstan": "^1.8",
         "phpunit/phpunit": "^9.5 || ^10.0 || ^11.0",
         "scrutinizer/ocular": "^1.8"
@@ -43,8 +42,7 @@
     },
     "config": {
         "allow-plugins": {
-            "ergebnis/composer-normalize": true,
-            "phpro/grumphp-shim": true
+            "ergebnis/composer-normalize": true
         },
         "platform": {
             "php": "8.1"
@@ -52,7 +50,14 @@
         "sort-packages": true
     },
     "scripts": {
+        "phpcsfixer:dry-run": "PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.php --dry-run --allow-risky=yes",
         "phpcsfixer": "PHP_CS_FIXER_IGNORE_ENV=1 vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.php --allow-risky=yes",
-        "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon"
+        "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon",
+        "phpunit": "vendor/bin/phpunit",
+        "test": [
+            "@phpcsfixer:dry-run",
+            "@phpstan",
+            "@phpunit"
+        ]
     }
 }

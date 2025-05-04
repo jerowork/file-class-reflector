@@ -1,9 +1,0 @@
-grumphp:
-    tasks:
-        composer_normalize: ~
-        phpcsfixer2:
-            config: .php-cs-fixer.php
-        phpstan:
-            configuration: phpstan.neon
-        phpunit:
-            config_file: phpunit.xml
