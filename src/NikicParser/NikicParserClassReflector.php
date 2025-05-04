@@ -26,8 +26,7 @@ final class NikicParserClassReflector implements ClassReflector
         private readonly FileFinder $fileFinder,
         private readonly Parser $parser,
         private readonly NodeTraverser $nodeTraverser,
-    ) {
-    }
+    ) {}
 
     public function addFile(string ...$files) : self
     {

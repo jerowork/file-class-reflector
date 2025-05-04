@@ -18,8 +18,7 @@ final class NikicParserClassReflectorFactory implements ClassReflectorFactory
         private readonly FileFinder $fileFinder,
         private readonly Parser $parser,
         private readonly NodeTraverser $nodeTraverser,
-    ) {
-    }
+    ) {}
 
     public static function createInstance() : ClassReflector
     {
