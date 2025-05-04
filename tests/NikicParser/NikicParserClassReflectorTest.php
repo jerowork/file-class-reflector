@@ -29,7 +29,7 @@ final class NikicParserClassReflectorTest extends TestCase
 
         $this->reflector = new NikicParserClassReflector(
             new RegexIteratorFileFinder(),
-            (new ParserFactory())->create(ParserFactory::PREFER_PHP7),
+            (new ParserFactory())->createForNewestSupportedVersion(),
             new NodeTraverser(),
         );
     }
