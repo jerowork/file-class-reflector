@@ -20,7 +20,7 @@
         "nikic/php-parser": "^5.4"
     },
     "require-dev": {
-        "ergebnis/composer-normalize": "^2.15",
+        "ergebnis/composer-normalize": "^2.47",
         "friendsofphp/php-cs-fixer": "^3.0",
         "mockery/mockery": "^1.4",
         "phpro/grumphp-shim": "^1.4",
@@ -43,8 +43,8 @@
     },
     "config": {
         "allow-plugins": {
-            "phpro/grumphp-shim": true,
-            "ergebnis/composer-normalize": true
+            "ergebnis/composer-normalize": true,
+            "phpro/grumphp-shim": true
         },
         "platform": {
             "php": "8.1"
